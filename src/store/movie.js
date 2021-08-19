@@ -7,7 +7,7 @@ export default {
   // data!    취급해야하는 데이터를 의미
   state: () => ({
     movies: [],
-    message: '',
+    message: 'Search for the movie title!',
     loading: false
   }),
   // computed!    계산된 데이터를 만든다.
@@ -28,6 +28,12 @@ export default {
   // 비동기
   actions: {
     async searchMovies({state, commit}, payload) {
+      if (state.loading) return
+
+      commit('updateState', {
+        message: '',
+        loading: true
+      })
       try {
           // Search Movie..
       const res = await _fetchMovie({
@@ -64,6 +70,10 @@ export default {
         commit('updateState', {
           movies: [],
           message
+        })
+      } finally {
+        commit('updateState', {
+          loading: false
         })
       }
     }
