@@ -1,6 +1,6 @@
 <template>
   <div
-    :style="{background: `url(${movie.Poster})`}"
+    :style="{backgroundImage: `url(${movie.Poster})`}"
     class="movie">
     <div class="info">
       <div class="year">
